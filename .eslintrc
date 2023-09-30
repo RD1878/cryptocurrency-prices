@@ -1,0 +1,128 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint-config-next", "next/core-web-vitals", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import",
+    "prettier",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    // common
+    "array-callback-return": "off",
+    "class-methods-use-this": "off",
+    "consistent-return": "off",
+    "default-param-last": "off",
+    "guard-for-in": "off",
+    "no-console": "warn",
+    "no-nested-ternary": "off",
+    "no-param-reassign": "off",
+    "no-plusplus": "off",
+    "no-restricted-syntax": "off",
+    "no-return-assign": "off",
+    "no-shadow": "off",
+    "no-use-before-define": "off",
+    "no-unsafe-optional-chaining": "warn",
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+    "padding-line-between-statements": [
+      "warn",
+      {
+        "blankLine": "always",
+        "prev": "var",
+        "next": "*"
+      },
+      {
+        "blankLine": "always",
+        "prev": "block-like",
+        "next": "*"
+      }
+    ],
+    "prefer-object-spread": "warn",
+    "quotes": ["warn", "single", { "allowTemplateLiterals": true, "avoidEscape": true }],
+    // import
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "mjs": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": [ "\\.svg" ]
+      }
+    ],
+    "import/named": "off",
+    "import/no-cycle": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-named-as-default": "off",
+    "import/order": "off",
+    "import/prefer-default-export": "off",
+    // typescript
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-shadow": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    // react
+    "react/default-props-match-prop-types": "off",
+    "react/destructuring-assignment": "off",
+    "react/jsx-filename-extension": [
+      2,
+      {
+        "extensions": [".js", ".ts", ".tsx"]
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "react/function-component-definition": "off",
+    "react/no-unused-class-component-methods": "off",
+    "react/no-unused-state": "off",
+    "react/no-unused-prop-types": "off",
+    "react/prop-types": "off",
+    "react/require-default-props": "off",
+    "react/static-property-placement": "off",
+    "react-hooks/exhaustive-deps": "off",
+    // jsx-a11y,
+    "jsx-a11y/img-redundant-alt": "off",
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "depth": 2
+      }
+    ],
+    // TODO: убрать следующие правила, отвечающие за доступность, и произвести рефакторинг
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/interactive-supports-focus": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/no-static-element-interactions": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".jsx", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    },
+    "import/extensions": [".ts", ".tsx", ".js"]
+  }
+}
