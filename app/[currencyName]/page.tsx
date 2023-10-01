@@ -8,7 +8,7 @@ type CurrencyProps = {
 };
 
 const Currency: FC<CurrencyProps> = async ({ params: { currencyName } }) => {
-  const res = await getPairPrice('binance', 'btcusdt');
+  const res = await getPairPrice('binance', currencyName);
 
   // const tradeWs = new WebSocket('wss://ws.coincap.io/trades/binance');
   //

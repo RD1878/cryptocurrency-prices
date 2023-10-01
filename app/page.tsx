@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import styles from './page.module.css';
-import CurrencyList from '~/Components/CurrencyList';
+import styles from './page.module.scss';
+import CurrencyList from '~/components/currencyList';
 
 export default function Home() {
   return (

@@ -1,13 +1,15 @@
+@import "variables.module";
+
 .main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+  padding: 30px 15px;
+  min-height: calc(100vh - ($footerHeight + $headerHeight));
 }
 
-.description {
+/*.description {
   display: inherit;
   justify-content: inherit;
   align-items: inherit;
@@ -107,7 +109,7 @@
 .logo {
   position: relative;
 }
-/* Enable hover only on non-touch devices */
+!* Enable hover only on non-touch devices *!
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
     background: rgba(var(--card-rgb), 0.1);
@@ -125,7 +127,7 @@
   }
 }
 
-/* Mobile */
+!* Mobile *!
 @media (max-width: 700px) {
   .content {
     padding: 4rem;
@@ -202,7 +204,7 @@
   }
 }
 
-/* Tablet and Smaller Desktop */
+!* Tablet and Smaller Desktop *!
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {
     grid-template-columns: repeat(2, 50%);
@@ -226,4 +228,4 @@
   to {
     transform: rotate(0deg);
   }
-}
+}*/
