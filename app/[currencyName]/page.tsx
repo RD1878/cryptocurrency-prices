@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { getPairPrice } from '~/app/api/getCurrencyData';
+import CurrencyItem from '~/components/currencyItem/CurrencyItem';
 
 type CurrencyProps = {
   params: {
@@ -7,21 +7,8 @@ type CurrencyProps = {
   };
 };
 
-const Currency: FC<CurrencyProps> = async ({ params: { currencyName } }) => {
-  const res = await getPairPrice('binance', currencyName);
-
-  // const tradeWs = new WebSocket('wss://ws.coincap.io/trades/binance');
-  //
-  // tradeWs.onmessage = function (msg) {
-  //   console.log(msg.data);
-  // };
-
-  return (
-    <div>
-      <h2>{currencyName}</h2>
-      <p>{res?.result?.price}</p>
-    </div>
-  );
+const CurrencyData: FC<CurrencyProps> = ({ params: { currencyName } }) => {
+  return <CurrencyItem currencyName={currencyName} />;
 };
 
-export default Currency;
+export default CurrencyData;

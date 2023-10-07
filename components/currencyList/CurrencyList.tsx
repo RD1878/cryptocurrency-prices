@@ -1,27 +1,37 @@
-import CurrencyItem from '../currencyItem';
+'use client';
+
+import CurrencyListItem from '../currencyListItem';
 import Link from 'next/link';
-import { getPairsPrices } from '~/app/api/getCurrencyData';
+import { fetchPairsPrices } from '~/app/api/fetchers';
 import styles from './CurrencyList.module.scss';
+import useSWR from 'swr';
+import { currencies, FIAT_CURRENCY } from '~/app/constants/currencies';
 
 type CurrencyListProps = {};
 
-export const CurrencyList = async () => {
-  const pairs = ['btcusdt', 'ethusdt', 'maticusdt', 'bnbusdt'];
+const CurrencyList = () => {
+  const fiatCurrency = FIAT_CURRENCY.USD;
+  const fetchCurrencies = currencies[fiatCurrency];
+  const fetchPairs = Object.keys(fetchCurrencies.pairs);
+  const fetcher = () => fetchPairsPrices(fetchPairs);
 
-  const prices: { [key: string]: number }[] = await getPairsPrices('binance', pairs);
+  const { data: prices, isLoading } = useSWR('pairs', fetcher);
 
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Popular cryptocurrencies</h2>
-      {prices.map((item) => {
-        const [key, value] = Object.entries(item)[0];
+      {isLoading && <p>Loading...</p>}
+      {prices?.map(({ result }) => {
+        const [key, value] = Object.entries(result)[0];
 
         return (
           <Link key={key} href={`/${key}`}>
-            <CurrencyItem name={key} price={value} />
+            <CurrencyListItem name={fetchCurrencies.pairs[key]?.tokenName} price={value?.a[0]} />
           </Link>
         );
       })}
     </div>
   );
 };
+
+export default CurrencyList;

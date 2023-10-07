@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from './Header.module.scss';
 
-export const Header = () => {
+const Header = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.navbar}>
@@ -11,3 +11,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;

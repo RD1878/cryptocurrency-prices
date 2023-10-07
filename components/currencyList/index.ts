@@ -1,3 +1,3 @@
-import { CurrencyList } from './CurrencyList';
+import CurrencyList from './CurrencyList';
 
 export default CurrencyList;
