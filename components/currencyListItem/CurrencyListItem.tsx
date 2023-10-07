@@ -1,7 +1,6 @@
 interface CurrencyListItemProps {
   name: string;
-  price: number;
-  fiat?: string;
+  price: string;
 }
 
 const CurrencyListItem = ({ name, price }: CurrencyListItemProps) => {

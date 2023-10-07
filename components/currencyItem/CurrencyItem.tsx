@@ -27,7 +27,7 @@ const CurrencyItem: FC<CurrencyItemProps> = ({ currencyName }) => {
 
   return (
     <div>
-      <h2>{fetchCurrencies.pairs[currencyName].tokenName}</h2>
+      <h2>{fetchCurrencies.pairs[currencyName]?.tokenName}</h2>
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {!!currentPrice && <p>{+currentPrice}</p>}

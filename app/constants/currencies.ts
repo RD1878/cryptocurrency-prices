@@ -2,7 +2,13 @@ export enum FIAT_CURRENCY {
   USD = 'usd',
 }
 
-export const currencies = {
+export const currencies: {
+  [key: string]: {
+    pairs: {
+      [key: string]: { blockchain: string; tokenName: string };
+    };
+  };
+} = {
   [FIAT_CURRENCY.USD]: {
     pairs: {
       'XXBTZUSD': { blockchain: 'Bitcoin', tokenName: 'BTC' },
