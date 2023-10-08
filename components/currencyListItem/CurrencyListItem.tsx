@@ -8,9 +8,10 @@ interface CurrencyListItemProps {
 }
 
 const CurrencyListItem = ({ imageSrc, name, price }: CurrencyListItemProps) => {
+  const imageLoader = ({ src }: { src: string }) => src;
   return (
     <div className={styles.container}>
-      <Image src={imageSrc} alt={name} width={50} height={50} />
+      <Image src={imageSrc} alt={name} width={50} height={50} loader={imageLoader} />
       <div className={styles.exchangeData}>
         <h3>{name}</h3>
         <p>{`${+price} USD`}</p>
