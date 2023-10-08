@@ -1,7 +1,7 @@
 'use client';
 
 import useSWR from 'swr';
-import { fetchPairPrice } from '~/app/api/fetchers';
+import { fetchPairPrice } from '~/app/helpers/fetchers';
 import { FC, useEffect, useState } from 'react';
 import { currencies, FIAT_CURRENCY } from '~/app/constants/currencies';
 

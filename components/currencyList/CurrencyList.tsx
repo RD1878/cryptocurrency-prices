@@ -2,14 +2,14 @@
 
 import CurrencyListItem from '../currencyListItem';
 import Link from 'next/link';
-import { fetchPairsPrices } from '~/app/api/fetchers';
+import { fetchPairsPrices } from '~/app/helpers/fetchers';
 import styles from './CurrencyList.module.scss';
 import useSWR from 'swr';
 import { currencies, FIAT_CURRENCY } from '~/app/constants/currencies';
 
 type CurrencyListProps = {};
 
-type Price = {
+type Prices = {
   error: any[];
   result: {
     [key: string]: {
@@ -23,24 +23,27 @@ const CurrencyList = () => {
   const fetchPairs = Object.keys(fetchCurrencies.pairs);
   const fetcher = () => fetchPairsPrices(fetchPairs);
 
-  const { data: prices, isLoading } = useSWR<Price[]>('pairs', fetcher);
+  const { data, isLoading } = useSWR<Prices>('pairs', fetcher);
+
+  const prices = Object.entries(data?.result ?? {});
 
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Popular cryptocurrencies</h2>
       {isLoading && <p>Loading...</p>}
-      {prices?.map(({ result }) => {
-        const [key, value] = Object.entries(result)[0];
-
-        return (
-          <Link key={key} href={`/${key}`}>
-            <CurrencyListItem
-              name={fetchCurrencies.pairs[key]?.tokenName}
-              price={value?.a[0] as string}
-            />
-          </Link>
-        );
-      })}
+      <div className={styles.currenciesList}>
+        {prices.map(([key, value]) => {
+          return (
+            <Link key={key} href={`/${key}`}>
+              <CurrencyListItem
+                imageSrc={fetchCurrencies.pairs[key]?.src}
+                name={fetchCurrencies.pairs[key]?.tokenName}
+                price={value?.a[0] as string}
+              />
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 };
